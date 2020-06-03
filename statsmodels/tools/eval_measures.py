@@ -13,32 +13,34 @@ import numpy as np
 from statsmodels.tools.validation import array_like
 
 
-def mse(x1, x2, axis=0):
-    """mean squared error
+def mse(y, y_hat, axis=0):
+    """Mean Squared Error
 
     Parameters
     ----------
-    x1, x2 : array_like
-       The performance measure depends on the difference between these two
-       arrays.
+    y : array_like
+      Actual value
+    y_hat : array_like
+       Predicted value. The performance measure depends on the 
+       difference between these two arrays.
     axis : int
-       axis along which the summary statistic is calculated
+       Ais along which the summary statistic is calculated
 
     Returns
     -------
     mse : ndarray or float
-       mean squared error along given axis.
+       Mean Squared Error along given axis.
 
     Notes
     -----
-    If ``x1`` and ``x2`` have different shapes, then they need to broadcast.
+    If ``y`` and ``y_hat`` have different shapes, then they need to broadcast.
     This uses ``numpy.asanyarray`` to convert the input. Whether this is the
     desired result or not depends on the array subclass, for example
     numpy matrices will silently produce an incorrect result.
     """
-    x1 = np.asanyarray(x1)
-    x2 = np.asanyarray(x2)
-    return np.mean((x1-x2)**2, axis=axis)
+    y = np.asarray(y)
+    y_hat = np.asarray(y_hat)
+    return np.mean((y-y_hat)**2, axis=axis)
 
 
 def rmse(x1, x2, axis=0):
